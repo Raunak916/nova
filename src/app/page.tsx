@@ -1,5 +1,3 @@
-
-
 "use client";
 import { Button  } from "@/components/ui/button";
 import { buttonVariants } from "@/components/ui/button";
@@ -7,8 +5,10 @@ import { useTRPC } from "@/trpc/client";
 import { useMutation } from "@tanstack/react-query";
 import { on } from "events";
 import { toast } from "sonner";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
 const Page = () => {
-
+  const [value, setValue] = useState(" ")
   const trpc = useTRPC();
   const invoke = useMutation(trpc.invoke.mutationOptions(
     {
@@ -19,8 +19,9 @@ const Page = () => {
   ))
   return (
     <div className=" mx-2 p-4 max-w-7xl">
+      <Input value = { value } onChange={(e)=>{setValue(e.target.value)}} />
       <Button variant="ghost" className="mb-4"
-      onClick={() => { invoke.mutate({ text: "raunakswain.19402@gmail.com" }) }}>
+      onClick={() => { invoke.mutate({ value: value }) }}>
       Invoke Background Job 
     </Button>
    </div>

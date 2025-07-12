@@ -1,21 +1,26 @@
 import { inngest } from "./client";
+import {openai, createAgent} from "@inngest/agent-kit";
 
 export const helloWorld = inngest.createFunction(
   { id: "hello-world" },                        // 1. Unique ID of the function
   { event: "test/hello.world" },                // 2. Event that triggers this function
-  async ({ event, step }) => {                  // 3. Function body (async job)
+  async ({ event }) => {                  // 3. Function body (async job)
 
-    //suppose this is for video download 
-    await step.sleep("wait-a-moment", "30s");
-    
-    //this step is for transcribe 
-    await step.sleep("wait-a-moment", "10s");  
-    
-    //this step is for summarise
-    await step.sleep("wait-a-moment", "5s");    
+    const codeAgent = createAgent(
+   { 
+    name:"code-agent",
+    system:"You are an expert next.js developer.You write readable and maintainable code.You write simple next.js and React snippets.",
+    model:openai({
+      model:"gpt-4o",
+      apiKey:process.env.OPENAI_API_KEY,
+    })
+    }
+    )
 
-
-    return { message: `Hello ${event.data.email}!` };  // 5. Respond with a message
+    const {output} = await codeAgent.run(
+      `Write snippets for the following:${event.data.value}`
+    )
+    return { output }
   },
 );
 
