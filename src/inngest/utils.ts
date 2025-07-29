@@ -6,6 +6,7 @@ export async function getSandbox(sandboxId:string){
 }
 
 export async function lastAssistantTextMessageContent(result: AgentResult){
+    //output is an array of message objects(which contains role + content)
     const lastAssistantTextMessageIndex = result.output.findLastIndex(
         (message)=> message.role === "assistant"
     )
