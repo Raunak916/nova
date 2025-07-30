@@ -5,6 +5,23 @@ import z from "zod";
 import { generateSlug } from "random-word-slugs";
 
 export const projectsRouter = createTRPCRouter({
+    getOne:baseProcedure
+    .input(
+        z.object({
+            id:z.string().min(1,{ message: "Id is compulsory" })
+        })
+    )
+    .query(async({ input })=>{
+        //findMany return array of objects 
+        const existingProject = await prisma.project.findUnique({
+            where:{
+                id:input.id
+            }
+        }
+           
+        )
+        return existingProject ;
+    }),
     getMany:baseProcedure
     .query(async()=>{
         //findMany return array of objects 
