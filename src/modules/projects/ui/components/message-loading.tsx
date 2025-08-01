@@ -13,9 +13,7 @@ const ShimmerMessages = ()=>{
         "Adding Final Touches...",
         "Almost there...",
     ]
-
     const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
-
     useEffect(()=>{
         const interval = setInterval(()=>{
             setCurrentMessageIndex((prev)=> (prev + 1)% messages.length)
