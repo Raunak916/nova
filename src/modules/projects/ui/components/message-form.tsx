@@ -94,6 +94,7 @@ export const MessageForm = ({ projectId }:Props)=>{
                         &nbsp;to submit
                     </div>
                     <Button
+                    type="button"
                     disabled = {isButtonDisabled}
                      className={cn(
                         "size-8 rounded-full",
