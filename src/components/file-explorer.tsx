@@ -18,7 +18,6 @@ import {
 
 import { convertFilesToTreeItems } from "@/lib/utils";
 import { TreeView } from "./tree-view";
-import { File } from "buffer";
 
 type FileCollection = { [path:string] :string};// [ ] for multiple paths ( mtlb ek se zyada pths honge but string : string )
 
@@ -144,7 +143,6 @@ export const FileExplorer = ({ files }: FileExplorerProps)=>{
                         <FileBreadCrumb filePath={selectedFile} />
                         <Hint text="copy to clipboard" align="start" side="bottom">
                             <Button
-                            
                             variant="outline"
                             size="icon"
                             className="ml-auto"
