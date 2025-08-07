@@ -7,7 +7,7 @@ interface Props{
 const Layout = ({ children }:Props)=>{
 
     return(
-        <main className={`flex flex-col min-h-screen relative overflow-hidden `}>
+        <main className={`flex flex-col min-h-screen relative overflow-x-hidden `}>
             {/* <div
                 className="
                     absolute inset-0 -z-10 h-full w-full 
