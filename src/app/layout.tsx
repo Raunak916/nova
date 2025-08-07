@@ -4,6 +4,14 @@ import { Toaster } from "sonner";
 import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
 import { ThemeProvider } from "next-themes";
+import localFont from 'next/font/local'
+
+
+const specialGothic = localFont({
+  src: './fonts/SpecialGothicExpandedOne-Regular.ttf', 
+  variable: '--font-special-gothic',
+  display: 'swap'
+})
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +35,7 @@ export default function RootLayout({
 }>) {
   return (
     <TRPCReactProvider>
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={specialGothic.className}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
