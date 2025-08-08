@@ -14,6 +14,7 @@ import { Button } from "@/components/ui/button";
 import { Form , FormField,} from "@/components/ui/form";
 import { useRouter } from "next/navigation";
 import { PROJECT_TEMPLATES } from "../../constants";
+import { useClerk } from "@clerk/nextjs";
 
 
 
@@ -23,6 +24,7 @@ const formSchema = z.object({
             .max(10000,{message:"Message too long"}),
 })
 export const ProjectForm = ()=>{
+    const clerk = useClerk();
     const router = useRouter();
     const trpc = useTRPC();
     const queryClient = useQueryClient();
@@ -39,6 +41,7 @@ export const ProjectForm = ()=>{
             router.push(`/projects/${data.id}`);
         },
         onError:(error)=>{
+            clerk.openSignIn()
             toast.error(error.message);
         }
     }))
