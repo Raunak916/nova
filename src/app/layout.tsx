@@ -5,6 +5,7 @@ import "./globals.css";
 import { TRPCReactProvider } from "@/trpc/client";
 import { ThemeProvider } from "next-themes";
 import localFont from 'next/font/local'
+import { ClerkProvider } from "@clerk/nextjs";
 
 
 const specialGothic = localFont({
@@ -34,6 +35,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+    <ClerkProvider>
     <TRPCReactProvider>
     <html lang="en" suppressHydrationWarning className={specialGothic.className}>
       <body
@@ -51,5 +53,6 @@ export default function RootLayout({
       </body>
     </html>
     </TRPCReactProvider>
+    </ClerkProvider>
   );
 }
