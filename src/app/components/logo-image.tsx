@@ -1,9 +1,12 @@
 import Image from "next/image"
-const LogoImage = ({size = 100}:{size?:number})=>{
+
+interface Props{
+    size:number;
+}
+const LogoImage = ({ size }:Props)=>{
     return(
         <>
-          <Image 
-          src="/nova-darkLogo.svg"
+          <Image src="/nova-darkLogo.svg"
           alt="Nova Logo dark"
           height={size}
           width={size}
