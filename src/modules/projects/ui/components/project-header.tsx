@@ -69,7 +69,7 @@ export const ProjectHeader = ({ projectId }:Props)=>{
                                 <span>Light</span>
                             </DropdownMenuRadioItem>
                             <DropdownMenuRadioItem value="dark">
-                                <span>Rajak</span>
+                                <span>Dark</span>
                             </DropdownMenuRadioItem>
                             <DropdownMenuRadioItem value="system">
                                 <span>System</span>

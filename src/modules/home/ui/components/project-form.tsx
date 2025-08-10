@@ -39,10 +39,15 @@ export const ProjectForm = ()=>{
             form.reset();
             queryClient.invalidateQueries(trpc.projects.getMany.queryOptions())
             router.push(`/projects/${data.id}`);
+            queryClient.invalidateQueries(trpc.usage.status.queryOptions())
         },
         onError:(error)=>{
-            clerk.openSignIn()
             toast.error(error.message);
+            if (error.data?.code === "UNAUTHORIZED") {
+                clerk.openSignIn()    
+            } else {
+                router.push("/pricing")
+            }
         }
     }))
     const onSubmit = async(values:z.infer<typeof formSchema>)=>{
